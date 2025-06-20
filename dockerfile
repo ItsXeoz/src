@@ -1,7 +1,7 @@
-# Use PHP 8.2 FPM base image
-FROM php:8.2-fpm
+# Use PHP 8.2 CLI (not FPM, since we're serving via artisan)
+FROM php:8.2-cli
 
-# Install system dependencies and PHP extensions
+# Install dependencies
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     unzip \
@@ -20,18 +20,17 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www
 
-# Copy application files
+# Copy project files
 COPY . .
 
-# Set permissions for Laravel storage and cache
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
-    && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+# Set folder permissions
+RUN chmod -R 775 storage bootstrap/cache
 
-# Install Laravel dependencies
+# Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Expose PHP-FPM port
-EXPOSE 9000
+# Laravel will listen on port 8080 for Railway
+EXPOSE 8080
 
-# Start PHP-FPM
-CMD ["php-fpm"]
+# Run Laravel using built-in dev server
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
