@@ -29,9 +29,6 @@ cmds = [
   "npm ci", "npm install",
 ]
 
-[phases.build]
-cmds = ["npm run build"]
-
 [phases.start]
 cmds = [
   "php artisan config:cache",
