@@ -33,7 +33,8 @@ RUN composer install --no-dev --optimize-autoloader
 RUN npm install && npm run build
 
 # Laravel pakai port 8080 di Railway
-EXPOSE 8080
+EXPOSE 9000
 
-# Jalankan Laravel: cache config, migrasi, lalu serve
-CMD ["sh", "-c", "php artisan config:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
+CMD php artisan config:cache && \
+    php artisan migrate --force && \
+    php artisan serve --host=0.0.0.0 --port=9000
