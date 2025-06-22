@@ -17,7 +17,9 @@ export default defineConfig({
   'resources/vendor/swiper/swiper-bundle.min.js',
   'resources/vendor/imagesloaded/imagesloaded.pkgd.min.js',
   'resources/vendor/isotope-layout/isotope.pkgd.min.js',
-  'resources/js/main.js','resources/css/app.css', 'resources/js/app.js'
+  'resources/js/main.js','resources/css/app.css', 'resources/js/app.js',
+  'resources/css/theme.css', 'resources/js/app.js', 'resources/js/iconify-icon.min.js', 
+  'resources/js/sidebarmenu.js', 'resources/js/overlay.js', 'resources/js/index.js', 'resources/js/jquery.min.js', 'resources/js/simplebar.min.js'
 ],
             refresh: true,
         }),
