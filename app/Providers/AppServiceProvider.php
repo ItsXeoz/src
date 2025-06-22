@@ -3,8 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Artisan;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,9 +20,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (app()->environment('production')) {
-        Log::info('Running migration from AppServiceProvider...');
-        Artisan::call('migrate', ['--force' => true]);
-    }
+        
     }
 }
