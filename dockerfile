@@ -1,7 +1,7 @@
-# Gunakan PHP 8.2 CLI karena pakai artisan serve
+# Gunakan base image PHP CLI
 FROM php:8.2-cli
 
-# Install dependencies
+# Install dependencies sistem & PHP extension
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -16,24 +16,24 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo pdo_pgsql pdo_mysql gd zip
 
-# Install Composer
+# Install Composer dari image resmi
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
+# Atur direktori kerja
 WORKDIR /var/www
 
-# Salin semua file project
+# Salin semua file proyek Laravel
 COPY . .
 
-# Set permission untuk Laravel
+# Set permission ke storage dan bootstrap
 RUN chmod -R 775 storage bootstrap/cache
 
-# Install Laravel dependencies
+# Install dependencies Laravel + build assets
 RUN composer install --no-dev --optimize-autoloader
 RUN npm install && npm run build
 
-# Laravel menggunakan port 8080 di Railway
+# Laravel pakai port 8080 di Railway
 EXPOSE 8080
 
-# Jalankan migration, cache config, dan start Laravel
-CMD php artisan config:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080
+# Jalankan Laravel: cache config, migrasi, lalu serve
+CMD ["sh", "-c", "php artisan config:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
