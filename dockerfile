@@ -1,5 +1,5 @@
 # =============================
-# Dockerfile Laravel untuk Railway (PHP 8.2)
+# Dockerfile Laravel untuk Railway (PHP 8.2, Port 9000)
 # =============================
 
 FROM php:8.2-cli
@@ -21,7 +21,7 @@ WORKDIR /var/www
 # Copy project files
 COPY . .
 
-# Set permission
+# Set permission untuk storage dan cache
 RUN chmod -R 775 storage bootstrap/cache
 
 # Install dependencies
@@ -31,15 +31,13 @@ RUN npm install && npm run build
 # Copy .env jika belum ada
 RUN cp .env.example .env || true
 
-# Generate key (jika belum ada)
+# Generate key jika belum ada
 RUN php artisan key:generate || true
 
-# Expose port Railway
-EXPOSE 8080
+# Expose port 9000 agar sesuai dengan Railway
+EXPOSE 9000
 
-# Copy entrypoint script dan beri izin eksekusi
-COPY docker/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-# Jalankan Laravel dengan PHP built-in server
-CMD ["/entrypoint.sh"]
+# Jalankan Laravel dengan PHP built-in server di port 9000
+CMD php artisan config:cache && \
+    php artisan migrate --force && \
+    php artisan serve --host=0.0.0.0 --port=9000
