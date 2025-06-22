@@ -22,7 +22,14 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <!-- Vite Assets -->
-    @vite(['resources/css/theme.css', 'resources/js/app.js', 'resources/js/iconify-icon.min.js', 'resources/js/sidebarmenu.js', 'resources/js/overlay.js', 'resources/js/index.js', 'resources/js/jquery.min.js', 'resources/js/simplebar.min.js'])
+    <link rel="stylesheet" href="/css/theme.css">
+    <script src="/js/app.js"></script>
+    <script src="/js/iconify-icon.min.js"></script>
+    <script src="/js/sidebarmenu.js"></script>
+    <script src="/js/overlay.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/simplebar.min.js"></script>
 </head>
 
 <body class="bg-surface">

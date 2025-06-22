@@ -7,10 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-
+    <link rel="stylesheet" href="/css/theme.css">
+    <script src="/js/app.js"></script>
+    <script src="/js/iconify-icon.min.js"></script>
+    <script src="/js/sidebarmenu.js"></script>
+    <script src="/js/overlay.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/simplebar.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    @vite(entrypoints: ['resources/css/theme.css', 'resources/js/app.js', 'resources/js/iconify-icon.min.js', 'resources/js/sidebarmenu.js', 'resources/js/overlay.js', 'resources/js/index.js', 'resources/js/jquery.min.js', 'resources/js/simplebar.min.js'])
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
