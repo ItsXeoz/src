@@ -45,7 +45,7 @@
         <div class="container-fluid container-xl justify-between position-relative d-flex align-items-center">
             <div class="flex">
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-                <img alt="Logo" class="h-12 w-12 object-cover mr-3" src="{{ asset('images/logo if.png') }}" />
+                <img alt="Logo" class="h-12 w-12 object-cover mr-3" src="https://media.githubusercontent.com/media/ItsXeoz/src/main/public/images/logo%20if.png" />
                 <div>
                     <h1 class="text-lg md:text-xl font-bold">Tracer Study</h1>
                     <p class="text-sm">Teknik Informatika</p>
@@ -78,7 +78,7 @@
     <main class="main">
         <!-- Hero Section -->
         <section id="hero" class="hero section">
-            <img src="{{ asset('/images/graduate.png') }}" alt="" data-aos="fade-in" class="">
+            <img src="https://media.githubusercontent.com/media/ItsXeoz/src/main/public/images/graduate.png" alt="" data-aos="fade-in" class="">
             <div class="container justify-content-center">
                 <div class="row justify-content-center" data-aos="zoom-out">
                     <div class="col-xl-7 col-lg-9 text-center">
@@ -152,7 +152,7 @@
         </section>
         <div class="flex flex-col md:flex-row justify-between mx-auto px-16 py-16 bg-blue-400 ">
             <div class="col-lg-5 pl-6 position-relative " data-aos="fade-up" data-aos-delay="100">
-                <img src="{{ asset('images/university.jpg') }}" alt="" data-aos="fade-in" class="">
+                <img src="https://media.githubusercontent.com/media/ItsXeoz/src/main/public/images/university.jpg" alt="" data-aos="fade-in" class="">
             </div>
             <div class="col-lg-6 py-5 content" data-aos="fade-up" data-aos-delay="200">
                 <h2 class="text-3xl font-bold text-yellow-400 mb-4">Tracer Study Teknik Informatika</h2>

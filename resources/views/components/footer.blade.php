@@ -6,8 +6,8 @@
             <!-- Left Section -->
             <div class="flex flex-col md:w-1/2">
                 <div class="flex items-center mb-4">
-                    <img alt="Logo of UIN Sunan Gunung Djati" class="h-12 mr-4" src="{{ asset('images/blu.png') }}" />
-                    <img alt="Logo of Teknik Informatika" class="h-12" height="48" src="{{ asset('images/logo if.png') }}" width="48" />
+                    <img alt="Logo of UIN Sunan Gunung Djati" class="h-12 mr-4" src="https://media.githubusercontent.com/media/ItsXeoz/src/main/public/images/blu.png" />
+                    <img alt="Logo of Teknik Informatika" class="h-12" height="48" src="https://media.githubusercontent.com/media/ItsXeoz/src/main/public/images/logo%20if.png" width="48" />
                 </div>
                 <p class="text-sm font-bold mb-1">Teknik Informatika</p>
                 <p class="text-sm">
