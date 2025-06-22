@@ -17,7 +17,7 @@ export default defineConfig({
   'resources/vendor/swiper/swiper-bundle.min.js',
   'resources/vendor/imagesloaded/imagesloaded.pkgd.min.js',
   'resources/vendor/isotope-layout/isotope.pkgd.min.js',
-  'resources/js/main.js',
+  'resources/js/main.js','resources/css/app.css', 'resources/js/app.js'
 ],
             refresh: true,
         }),
