@@ -5,17 +5,22 @@
 [build]
 builder = "NIXPACKS"
 
-# Gunakan PHP, Composer, Node.js, Nginx
 [phases.setup]
 nixPkgs = [
   "php82",
   "php82Packages.composer",
-  "nodejs_18",
+  "php82Packages.pcov",         # opsional, coverage
+  "php82Extensions.mbstring",   # penting untuk Laravel
+  "php82Extensions.xml",        # penting
+  "php82Extensions.pdo_pgsql",  # PostgreSQL driver
+  "php82Extensions.fileinfo",   # validasi file
+  "php82Extensions.zip",        # ZIP support
+  "php82Extensions.tokenizer",  # blade, routing
   "nginx",
+  "nodejs_18",
   "openssl",
-  "pkg-config",
-  "libpq",              # untuk PostgreSQL
-  "imagemagick",        # opsional: jika kamu butuh library gambar
+  "libpq",
+  "imagemagick"
 ]
 
 [phases.install]
@@ -29,7 +34,7 @@ cmds = ["npm run build"]
 
 [phases.start]
 cmds = [
-  # Jalankan migrate agar tabel terbentuk
+  "php artisan config:cache",
   "php artisan migrate --force"
 ]
 
