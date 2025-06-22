@@ -236,7 +236,6 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Preloader -->
-    <div id="preloader"></div>
 
     <!-- Main JS File -->
 
