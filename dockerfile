@@ -1,43 +1,40 @@
-# =============================
-# Dockerfile Laravel untuk Railway (PHP 8.2, Port 9000)
-# =============================
+FROM php:8.2-fpm
 
-FROM php:8.2-cli
-
-# Install sistem dependencies & PHP extensions
+# Install dependencies
 RUN apt-get update && apt-get install -y \
     git unzip curl libpng-dev libjpeg-dev libfreetype6-dev \
-    libzip-dev libpq-dev libonig-dev libxml2-dev \
+    libzip-dev libpq-dev libonig-dev libxml2-dev nginx supervisor \
     nodejs npm \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo pdo_pgsql pdo_mysql zip gd mbstring xml
+    && docker-php-ext-install pdo pdo_pgsql pdo_mysql zip gd mbstring xml \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
+# Set working dir
 WORKDIR /var/www
 
-# Copy project files
+# Copy project
 COPY . .
 
-# Set permission untuk storage dan cache
+# Permissions
 RUN chmod -R 775 storage bootstrap/cache
 
-# Install dependencies
+# Install PHP deps
 RUN composer install --no-dev --optimize-autoloader
+
+# Build frontend
 RUN npm install && npm run build
 
-# Copy .env jika belum ada
-RUN cp .env.example .env || true
+# Copy Nginx config
+COPY nginx/conf.d/default.conf /etc/nginx/sites-available/default
 
-# Generate key jika belum ada
-RUN php artisan key:generate || true
+# Copy Entrypoint
+COPY nginx/conf.d/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Expose port 9000 agar sesuai dengan Railway
-EXPOSE 9000
+# Expose the HTTP port
+EXPOSE 8080
 
-# Jalankan Laravel dengan PHP built-in server di port 9000
-CMD php artisan config:cache && \
-    php artisan migrate --force && \
-    php artisan serve --host=0.0.0.0 --port=9000
+CMD ["/entrypoint.sh"]
