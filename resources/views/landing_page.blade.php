@@ -13,7 +13,7 @@
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="{{ asset('resources/css/main.css') }}">
+    <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="{{ asset('resources/vendor/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('resources/vendor/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('resources/vendor/glightbox/css/glightbox.min.css') }}">
