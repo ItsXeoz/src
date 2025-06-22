@@ -28,10 +28,10 @@ COPY . .
 # Berikan izin pada folder yang dibutuhkan Laravel
 RUN chmod -R 775 storage bootstrap/cache
 
-EXPOSE 9000
+EXPOSE 8080
 
 RUN composer
 RUN npm install && npm run build
 
 # Jalankan Laravel (tanpa Artisan::call dari ServiceProvider agar tidak crash)
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=9000
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080
