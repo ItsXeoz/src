@@ -28,16 +28,10 @@ COPY . .
 # Berikan izin pada folder yang dibutuhkan Laravel
 RUN chmod -R 775 storage bootstrap/cache
 
-# Jalankan composer install tanpa dependensi dev
-RUN composer install --no-dev --optimize-autoloader
+EXPOSE 9000
 
-# Jalankan npm untuk frontend
+RUN composer
 RUN npm install && npm run build
 
-# Railway menggunakan port 8080
-EXPOSE 8080
-
 # Jalankan Laravel (tanpa Artisan::call dari ServiceProvider agar tidak crash)
-CMD php artisan config:cache && \
-    php artisan migrate --force && \
-    php artisan serve --host=0.0.0.0 --port=8080
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=9000
