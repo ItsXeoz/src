@@ -13,7 +13,20 @@
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Fonts -->
-    @vite(['resources/css/main.css', 'resources/vendor/bootstrap/css/bootstrap.min.css', 'resources/vendor/bootstrap-icons/bootstrap-icons.css', 'resources/vendor/glightbox/css/glightbox.min.css', 'resources/vendor/swiper/swiper-bundle.min.css', 'resources/vendor/bootstrap/js/bootstrap.bundle.min.js', 'resources/vendor/php-email-form/validate.js', 'resources/vendor/purecounter/purecounter_vanilla.js', 'resources/vendor/glightbox/js/glightbox.min.js', 'resources/vendor/swiper/swiper-bundle.min.js', 'resources/vendor/imagesloaded/imagesloaded.pkgd.min.js', 'resources/vendor/isotope-layout/isotope.pkgd.min.js', 'resources/js/main.js'])
+    <link rel="stylesheet" href="{{ asset('resources/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('resources/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('resources/vendor/bootstrap-icons/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('resources/vendor/glightbox/css/glightbox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('resources/vendor/swiper/swiper-bundle.min.css') }}">
+    <script src="{{ asset('resources/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('resources/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('resources/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('resources/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('resources/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('resources/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('resources/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('resources/js/main.js') }}"></script>
+
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link
@@ -32,7 +45,7 @@
         <div class="container-fluid container-xl justify-between position-relative d-flex align-items-center">
             <div class="flex">
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-                <img alt="Logo" class="h-12 w-12 object-cover mr-3" src="{{ asset('images/logo if.png') }}" />
+                <img alt="Logo" class="h-12 w-12 object-cover mr-3" src="{{ asset('resources/images/logo if.png') }}" />
                 <div>
                     <h1 class="text-lg md:text-xl font-bold">Tracer Study</h1>
                     <p class="text-sm">Teknik Informatika</p>
@@ -42,8 +55,8 @@
                 <div class="relative">
                     <button id="avatarButton"
                         class="relative z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-yellow-300 hover:border-yellow-200 focus:outline-none">
-                        <img src="{{ Auth::user()->photo_url ?? 'https://t4.ftcdn.net/jpg/02/27/45/09/360_F_227450952_KQCMShHPOPebUXklULsKsROk5AvN6H1H.jpg' }}" alt="User Avatar"
-                            class="w-full h-full object-cover rounded-full">
+                        <img src="{{ Auth::user()->photo_url ?? 'https://t4.ftcdn.net/jpg/02/27/45/09/360_F_227450952_KQCMShHPOPebUXklULsKsROk5AvN6H1H.jpg' }}"
+                            alt="User Avatar" class="w-full h-full object-cover rounded-full">
                     </button>
                     <div id="avatarDropdown"
                         class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg py-2 hidden transition duration-200 z-50">
@@ -213,7 +226,7 @@
         </script>
 
 
-        
+
     </main>
 
     <x-footer />
