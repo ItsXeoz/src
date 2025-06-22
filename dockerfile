@@ -1,7 +1,10 @@
-# Gunakan base image PHP CLI
+# =============================
+# Dockerfile Laravel untuk Railway (PHP 8.2)
+# =============================
+
 FROM php:8.2-cli
 
-# Install dependency sistem dan PHP extension yang dibutuhkan Laravel
+# Install sistem dependencies & PHP extensions
 RUN apt-get update && apt-get install -y \
     git unzip curl libpng-dev libjpeg-dev libfreetype6-dev \
     libzip-dev libpq-dev libonig-dev libxml2-dev \
@@ -18,23 +21,25 @@ WORKDIR /var/www
 # Copy project files
 COPY . .
 
-# Set permission untuk Laravel storage
+# Set permission
 RUN chmod -R 775 storage bootstrap/cache
 
-# Install dependency
+# Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 RUN npm install && npm run build
 
-# Laravel memerlukan .env file, pastikan tersedia
+# Copy .env jika belum ada
 RUN cp .env.example .env || true
 
-# Generate key
-RUN php artisan key:generate
+# Generate key (jika belum ada)
+RUN php artisan key:generate || true
 
-# Expose port 8080 untuk Railway
+# Expose port Railway
 EXPOSE 8080
 
-# Jalankan Laravel pakai internal PHP server
-CMD php artisan config:cache && \
-    php artisan migrate --force && \
-    php artisan serve --host=0.0.0.0 --port=8080
+# Copy entrypoint script dan beri izin eksekusi
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Jalankan Laravel dengan PHP built-in server
+CMD ["/entrypoint.sh"]
