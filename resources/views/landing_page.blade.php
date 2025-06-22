@@ -14,18 +14,18 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="{{ asset('resources/vendor/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('resources/vendor/bootstrap-icons/bootstrap-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('resources/vendor/glightbox/css/glightbox.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('resources/vendor/swiper/swiper-bundle.min.css') }}">
-    <script src="{{ asset('resources/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('resources/vendor/php-email-form/validate.js') }}"></script>
-    <script src="{{ asset('resources/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-    <script src="{{ asset('resources/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('resources/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('resources/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('resources/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset('resources/js/main.js') }}"></script>
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="/resources/vendor/glightbox/css/glightbox.min.css">
+    <link rel="stylesheet" href="resources/vendor/swiper/swiper-bundle.min.css">
+    <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/resources/vendor/php-email-form/validate.js"></script>
+    <script src="/resources/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="resources/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="resources/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="resources/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="resources/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="resources/js/main.js"></script>
 
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -78,7 +78,7 @@
     <main class="main">
         <!-- Hero Section -->
         <section id="hero" class="hero section">
-            <img src="{{ asset('images/graduate.png') }}" alt="" data-aos="fade-in" class="">
+            <img src="{{ asset('/images/graduate.png') }}" alt="" data-aos="fade-in" class="">
             <div class="container justify-content-center">
                 <div class="row justify-content-center" data-aos="zoom-out">
                     <div class="col-xl-7 col-lg-9 text-center">
