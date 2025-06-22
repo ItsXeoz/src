@@ -1,0 +1,37 @@
+# ========================
+# Nixpacks Config for Laravel 11 on Railway
+# ========================
+
+[build]
+builder = "NIXPACKS"
+
+# Gunakan PHP, Composer, Node.js, Nginx
+[phases.setup]
+nixPkgs = [
+  "php82",
+  "php82Packages.composer",
+  "nodejs_18",
+  "nginx",
+  "openssl",
+  "pkg-config",
+  "libpq",              # untuk PostgreSQL
+  "imagemagick",        # opsional: jika kamu butuh library gambar
+]
+
+[phases.install]
+cmds = [
+  "composer install --no-dev --optimize-autoloader",
+  "npm ci"
+]
+
+[phases.build]
+cmds = ["npm run build"]
+
+[phases.start]
+cmds = [
+  # Jalankan migrate agar tabel terbentuk
+  "php artisan migrate --force"
+]
+
+[start]
+cmd = "php artisan serve --host=0.0.0.0 --port=8080"
