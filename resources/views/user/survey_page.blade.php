@@ -6,7 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    @vite(['resources/css/theme.css', 'resources/js/app.js', 'resources/js/index.js'])
+    <link rel="stylesheet" href="/css/theme.css">
+    <script src="/js/app.js"></script>
+    <script src="/js/iconify-icon.min.js"></script>
+    <script src="/js/sidebarmenu.js"></script>
+    <script src="/js/overlay.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/simplebar.min.js"></script>
     <title>Tracer Study</title>
 </head>
 
