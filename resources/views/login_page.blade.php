@@ -31,7 +31,7 @@
                 <h1 class="text-2xl font-bold mb-2">LOGIN</h1>
                 <p class="text-gray-600 mb-8">Tracer Study Teknik Informatika</p>
             </div>
-            <form action="{{ route('auth.login') }}" method="POST" autocomplete="on">
+            <form action="{{ url()->secure('auth.login') }}" method="POST" autocomplete="on">
                 @csrf
                 <div class="mb-4">
                     <div class="flex items-center border-b border-gray-300 py-2">
