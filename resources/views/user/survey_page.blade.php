@@ -33,7 +33,7 @@
                                     <div class="card-body">
 
                                         <!-- FORM -->
-                                        <form action="{{ route('/store') }}" method="POST">
+                                        <form action="{{ url()->secure('/store') }}" method="POST">
                                             @csrf
 
                                             {{-- Dropdown Status --}}
