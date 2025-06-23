@@ -2,7 +2,7 @@
     <aside id="application-sidebar-brand"
         class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transform hidden xl:block xl:translate-x-0 xl:end-auto xl:bottom-0 fixed xl:top-5 xl:left-auto top-0 left-0 with-vertical h-screen z-[999] shrink-0 w-[270px] shadow-md xl:rounded-md rounded-none bg-white left-sidebar transition-all duration-300">
         <div class="flex items-center p-5">
-            <img alt="Logo" class="h-12 w-12 object-cover mr-3" src="{{ asset('images/logo if.png') }}" />
+            <img alt="Logo" class="h-12 w-12 object-cover mr-3" src="https://media.githubusercontent.com/media/ItsXeoz/src/main/public/images/logo%20if.png" />
             <div>
                 <h1 class="text-lg md:text-xl font-bold">Tracer Study</h1>
                 <p class="text-sm">Teknik Informatika</p>
