@@ -31,12 +31,12 @@
                 <h1 class="text-2xl font-bold mb-2">LOGIN</h1>
                 <p class="text-gray-600 mb-8">Tracer Study Teknik Informatika</p>
             </div>
-            <form action="{{ route('/auth/login') }}" method="POST">
+            <form action="{{ route('auth.login') }}" method="POST" autocomplete="on">
                 @csrf
                 <div class="mb-4">
                     <div class="flex items-center border-b border-gray-300 py-2">
                         <i class="fas fa-user text-gray-400 mr-3"></i>
-                        <input name="nim" aria-label="NIM" value="{{ old('nim') }}"
+                        <input name="nim" aria-label="NIM" value="{{ old('nim') }}" autocomplete="username"
                             class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                             placeholder="NIM" type="text" />
                     </div>
@@ -47,7 +47,7 @@
                 <div class="mb-6">
                     <div class="flex items-center border-b border-gray-300 py-2">
                         <i class="fas fa-lock text-gray-400 mr-3"></i>
-                        <input name="password" aria-label="Password" id="password"
+                        <input name="password" aria-label="Password" id="password" autocomplete="current-password"
                             class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                             placeholder="Password" type="password" />
                     </div>
