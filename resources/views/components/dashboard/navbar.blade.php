@@ -43,7 +43,7 @@
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                 class="btn-outline-primary font-medium text-[15px] w-full hover:bg-blue-600 hover:text-white">Logout
-                                <form id="logout-form" action="{{ route('logout') }}"
+                                <form id="logout-form" action="{{ url()->secure('logout') }}"
                                     method="POST" class="hidden">
                                     @csrf
                                 </form>
