@@ -70,7 +70,7 @@
                     </div>
                 </div>
             @else
-                <a class="btn-getstarted" href="{{ route('/auth/login') }}">Login</a>
+                <a class="btn-getstarted" href="{{ route('auth.login') }}">Login</a>
             @endauth
         </div>
     </header>
