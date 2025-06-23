@@ -21,9 +21,9 @@
 
         <div
             class="w-full md:w-1/2 bg-gradient-to-bl from-yellow-400 to-yellow-50 rounded-b-lg md:rounded-r-lg md:rounded-bl-none flex items-center justify-center relative p-10">
-            <img alt="Logo" class="absolute top-4 left-4 w-12 h-12" src="{{ asset('images/logo if.png') }}" />
+            <img alt="Logo" class="absolute top-4 left-4 w-12 h-12" src="https://media.githubusercontent.com/media/ItsXeoz/src/main/public/images/logo%20if.png" />
             <img alt="Illustration of a hand interacting with a web interface" class="w-3/4"
-                src="{{ asset('images/login.png') }}" />
+                src="https://media.githubusercontent.com/media/ItsXeoz/src/main/public/images/login.png" />
         </div>
 
         <div class="w-full md:w-1/2 p-10 mt-11 md:p-10">
@@ -31,7 +31,7 @@
                 <h1 class="text-2xl font-bold mb-2">LOGIN</h1>
                 <p class="text-gray-600 mb-8">Tracer Study Teknik Informatika</p>
             </div>
-            <form action="{{ url()->secure('auth.login') }}" method="POST" autocomplete="on">
+            <form action="{{ url()->secure('login') }}" method="POST" autocomplete="on">
                 @csrf
                 <div class="mb-4">
                     <div class="flex items-center border-b border-gray-300 py-2">

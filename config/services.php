@@ -4,7 +4,7 @@ return [
 
     // Konfigurasi API SALAM UIN SGD
     'api_salam' => [
-        'base_url' => env('API_SALAM_BASE_URL', 'https://api.uinsgd.ac.id/salam/v1/index.php/Auth/loginKalam/'),
+        'base_url' => env('API_SALAM_BASE_URL'),
         'token' => env('API_SALAM_TOKEN'),
     ],
 

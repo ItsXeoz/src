@@ -19,7 +19,7 @@ class UserMiddleware
     public function handle(Request $request, Closure $next, ?string $role = null): Response
     {
         if (!auth()->check()) {
-            return redirect()->route('/auth/login');
+            return redirect()->route('auth.login');
         }
 
         if ($role && auth()->user()->role !== $role) {
