@@ -42,7 +42,7 @@
                     }">
 
                         <h2 class="text-xl font-bold mb-4">Tambah Pertanyaan</h2>
-                        <form action="{{ url()->secure('questions.store') }}" method="POST">
+                        <form action="{{ url()->secure('/questions/store') }}" method="POST">
                             @csrf
 
                             <!-- Question -->
