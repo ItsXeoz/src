@@ -21,6 +21,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/user', [UserController::class, 'showUserDashboard'])
         ->name('user')->middleware('role:user');
+
     Route::get('/user/survey', [SurveyController::class, 'showSurvey'])
         ->name('/user/survey')->middleware('role:user');
 
@@ -28,6 +29,9 @@ Route::middleware(['auth'])->group(function () {
         ->name('/user/update')->middleware('role:user');
 
     Route::resource('questions', QuestionController::class)->middleware('role:admin');
+    Route::post('/questions/store', [QuestionController::class, 'store'])->name('questions.store')->middleware('role:admin');
+    Route::post('/questions/update', [QuestionController::class, 'update'])->name('questions.update')->middleware('role:admin');
+
     Route::resource('survey', SurveyController::class)->middleware('role:user');
     Route::put('/survey/update  ', [SurveyController::class, 'update'])->name('survey.update')->middleware('role:user');
 
