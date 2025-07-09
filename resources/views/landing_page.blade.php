@@ -54,7 +54,7 @@
             @auth
                 <a class="btn-getstarted" href="{{ url()->secure('logout') }}">Logout</a>
             @else
-                <a class="btn-getstarted" href="{{ url()->secure('auth.login') }}">Login</a>
+                <a class="btn-getstarted" href="{{ url()->secure('/auth/login') }}">Login</a>
             @endauth
         </div>
     </header>
