@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Exports\AnswersByStatusExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class userDetailController extends Controller
@@ -18,6 +20,12 @@ class userDetailController extends Controller
     public function answers()
     {
         return $this->hasMany(\App\Models\Answer::class);
+    }
+
+
+    public function exportTracerByStatus()
+    {
+        return Excel::download(new AnswersByStatusExport, 'tracer_by_status.xlsx');
     }
 
 }
