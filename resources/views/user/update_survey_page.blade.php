@@ -31,7 +31,7 @@
                                 <div class="card h-full">
                                     <div class="card-body">
                                         <!-- FORM -->
-                                        <form action="{{ url()->secure('survey.update') }}" method="POST">
+                                        <form action="{{ url()->secure('/survey/update') }}" method="POST">
                                             @csrf
                                             @method('PUT')
 
