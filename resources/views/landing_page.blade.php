@@ -156,7 +156,7 @@
             </div>
         </div>
 
-        <div class="flex flex-row flex-wrap justify-center gap-6">
+        <div class="flex flex-row flex-wrap justify-center gap-6 my-5">
             <div class="bg-white rounded-2xl shadow-lg px-6 py-4 w-full max-w-md">
                 <h2 class="text-xl font-semibold text-center text-gray-800 mb-4">Mendapat Kerja Kurang Dari 6 Bulan
                 </h2>
@@ -190,7 +190,7 @@
 
             $data3 = DB::table('answers')
                 ->join('questions', 'answers.question_id', '=', 'questions.id')
-                ->where('questions.question', 'ILIKE', '% jenis perusahaan/instansi%')
+                ->where('questions.question', 'ILIKE', '%jenis perusahaan/instansi%')
                 ->select('answers.answer', DB::raw('count(*) as total'))
                 ->groupBy('answers.answer')
                 ->get();
@@ -285,7 +285,7 @@
 
             const chart = new ApexCharts(document.querySelector("#chart"), options);
             const chart2 = new ApexCharts(document.querySelector("#chart2"), options2); // gunakan options2 untuk chart kedua
-            const chart3 = new ApexCharts(document.querySelector("#chart2"), options2); // gunakan options2 untuk chart kedua
+            const chart3 = new ApexCharts(document.querySelector("#chart3"), options3); // gunakan options2 untuk chart kedua
 
 
             chart.render();
