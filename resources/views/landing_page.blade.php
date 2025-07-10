@@ -112,25 +112,28 @@
             <div class="container mx-auto px-4 py-10" data-aos="fade-up" data-aos-delay="100">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Item 1 -->
-                    <span class="purecounter text-5xl font-bold text-yellow-300" data-purecounter-start="0"
-                        data-purecounter-end="{{ $totalBekerja }}" data-purecounter-duration="1">
-                        0
-                    </span>
-
+                    <div class=" rounded-xl  p-6 text-center">
+                        <span class="text-5xl font-bold text-yellow-300 purecounter" data-purecounter-start="0"
+                            data-purecounter-end="{{ $totalBekerja ?? 0 }}" data-purecounter-duration="1">
+                        </span>
+                        <p class="mt-2 text-gray-700 font-normal">Bekerja</p>
+                    </div>
 
                     <!-- Item 2 -->
-                    <span class="purecounter text-5xl font-bold text-yellow-300" data-purecounter-start="0"
-                        data-purecounter-end="{{ $totalWiraswasta }}" data-purecounter-duration="1">
-                        0
-                    </span>
-
+                    <div class=" rounded-xl p-6 text-center">
+                        <span class="text-5xl font-bold text-yellow-300 purecounter" data-purecounter-start="0"
+                            data-purecounter-end="{{ $totalWiraswasta ?? 0 }}" data-purecounter-duration="1">
+                        </span>
+                        <p class="mt-2 text-gray-700 font-semibold">Wiraswasta</p>
+                    </div>
 
                     <!-- Item 3 -->
-                    <span class="purecounter text-5xl font-bold text-yellow-300" data-purecounter-start="0"
-                        data-purecounter-end="{{ $totalPendidikan }}" data-purecounter-duration="1">
-                        0
-                    </span>
-
+                    <div class=" rounded-xl  p-6 text-center">
+                        <span class="text-5xl font-bold text-yellow-300 purecounter" data-purecounter-start="0"
+                            data-purecounter-end="{{ $totalPendidikan ?? 0 }}" data-purecounter-duration="1">
+                        </span>
+                        <p class="mt-2 text-gray-700 font-semibold">Melanjutkan Pendidikan</p>
+                    </div>
                 </div>
             </div>
         </section>
