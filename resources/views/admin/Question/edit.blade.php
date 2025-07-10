@@ -41,7 +41,7 @@
                     }">
 
                         <h2 class="text-xl font-bold mb-4">Edit</h2>
-                        <form action="{{ url()->secure('questions.update', $question->id) }}" method="POST">
+                        <form action="{{ url()->secure('/questions/update', $question->id) }}" method="POST">
                             @csrf
                             @method('PUT')
 
