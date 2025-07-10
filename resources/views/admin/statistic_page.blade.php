@@ -45,23 +45,7 @@
                             <div class="bg-white rounded-lg shadow-md p-6 w-full">
                                 <h1 class="text-2xl font-bold mb-4">Survey Statistics</h1>
 
-                                <div x-data="{
-                                    status: '{{ $selectedStatus }}',
-                                    updateURL() {
-                                        const param = this.status ? '?status=' + encodeURIComponent(this.status) : '';
-                                        window.location.href = '{{ route('/admin/statistic') }}' + param;
-                                    }
-                                }">
-                                    <div class="mb-6 p-6 bg-white rounded shadow">
-                                        <label class="mr-2 font-medium text-gray-700">Filter Status Alumni:</label>
-                                        <select x-model="status" @change="updateURL"
-                                            class="border px-3 py-2 rounded-lg">
-                                            <option value="">Semua</option>
-                                            @foreach ($statuses as $status)
-                                                <option value="{{ $status }}">{{ ucfirst($status) }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                
 
                                     @foreach ($charts as $i => $chart)
                                         <div class="bg-white p-6 rounded-lg shadow mb-6">

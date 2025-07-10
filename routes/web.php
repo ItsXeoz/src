@@ -1,6 +1,5 @@
 <?php
 
-use App\Exports\AnswersExport;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LoginController;
@@ -59,6 +58,5 @@ Route::middleware(['guest'])->group(function () {
 });
 
 
-Route::get('/export-answers', function () {
-    return Excel::download(new AnswersExport, 'answers.xlsx');
-});
+
+Route::get('/export-tracer-status', [userDetailController::class, 'exportTracerByStatus']);
