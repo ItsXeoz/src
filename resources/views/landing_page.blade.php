@@ -293,11 +293,6 @@
             chart3.render(); // jangan lupa render chart kedua
         </script>
 
-
-
-
-
-
     </main>
 
     <x-footer />
