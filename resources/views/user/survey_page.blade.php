@@ -29,8 +29,7 @@
 
                         <div class="lg:gap-x-6 gap-x-0 lg:gap-y-0 gap-y-6">
                             <div class="col-span-2">
-                                <div class="card h-full">
-                                    <div class="card-body">
+                                
 
                                         <!-- FORM -->
                                         <form action="{{ url()->secure('/store') }}" method="POST">
@@ -119,10 +118,14 @@
                                                 </div>
                                             @endforeach
 
-
+ <div class="h-full my-5">
+                                        <div class="card-body">
                                             <button type="submit"
                                                 class="px-4 py-2 bg-blue-600 text-white rounded-lg">Kirim</button>
                                         </form>
+                                       </div>
+                                   </div>
+                                        
 
                                         {{-- JavaScript untuk Menampilkan Pertanyaan Berdasarkan Status --}}
                                         <script>
@@ -159,8 +162,7 @@
                                             });
                                         </script>
 
-                                    </div>
-                                </div>
+                                    
                             </div>
                         </div>
                     </div>
