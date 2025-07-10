@@ -181,9 +181,28 @@
                 ->groupBy('answers.answer')
                 ->get();
 
+            $data2 = DB::table('answers')
+                ->join('questions', 'answers.question_id', '=', 'questions.id')
+                ->where('questions.question', 'ILIKE', '%lokasi tempat Anda bekerja%')
+                ->select('answers.answer', DB::raw('count(*) as total'))
+                ->groupBy('answers.answer')
+                ->get();
+
+            $data3 = DB::table('answers')
+                ->join('questions', 'answers.question_id', '=', 'questions.id')
+                ->where('questions.question', 'ILIKE', '% jenis perusahaan/instansi%')
+                ->select('answers.answer', DB::raw('count(*) as total'))
+                ->groupBy('answers.answer')
+                ->get();
+
             $labels = $data->pluck('answer');
             $series = $data->pluck('total');
 
+            $labels2 = $data2->pluck('answer');
+            $series2 = $data2->pluck('total');
+
+            $labels3 = $data3->pluck('answer');
+            $series3 = $data3->pluck('total');
         @endphp
         <script>
             const options = {
@@ -191,8 +210,8 @@
                     type: 'pie',
                     height: 350
                 },
-                labels: {!! json_encode($labels) !!}, // dari Blade
-                series: {!! json_encode($series) !!}, // dari Blade
+                labels: {!! json_encode($labels) !!},
+                series: {!! json_encode($series) !!},
                 colors: ['#22c55e', '#f97316', '#ef4444'],
                 legend: {
                     position: 'bottom'
@@ -212,8 +231,66 @@
                 }
             };
 
+            const options2 = {
+                chart: {
+                    type: 'pie',
+                    height: 350
+                },
+                labels: {!! json_encode($labels2) !!},
+                series: {!! json_encode($series2) !!},
+                colors: ['#3b82f6', '#f59e0b', '#10b981'],
+                legend: {
+                    position: 'bottom'
+                },
+                dataLabels: {
+                    enabled: true,
+                    formatter: function(val, opts) {
+                        const total = opts.w.globals.seriesTotals.reduce((a, b) => a + b, 0);
+                        const value = opts.w.globals.series[opts.seriesIndex];
+                        return `${value} (${val.toFixed(1)}%)`;
+                    }
+                },
+                stroke: {
+                    show: true,
+                    width: 1,
+                    colors: ['#ffffff']
+                }
+            };
+
+            const options3 = {
+                chart: {
+                    type: 'pie',
+                    height: 350
+                },
+                labels: {!! json_encode($labels3) !!},
+                series: {!! json_encode($series3) !!},
+                colors: ['#3b82f6', '#f59e0b', '#10b981'],
+                legend: {
+                    position: 'bottom'
+                },
+                dataLabels: {
+                    enabled: true,
+                    formatter: function(val, opts) {
+                        const total = opts.w.globals.seriesTotals.reduce((a, b) => a + b, 0);
+                        const value = opts.w.globals.series[opts.seriesIndex];
+                        return `${value} (${val.toFixed(1)}%)`;
+                    }
+                },
+                stroke: {
+                    show: true,
+                    width: 1,
+                    colors: ['#ffffff']
+                }
+            };
+
             const chart = new ApexCharts(document.querySelector("#chart"), options);
+            const chart2 = new ApexCharts(document.querySelector("#chart2"), options2); // gunakan options2 untuk chart kedua
+            const chart3 = new ApexCharts(document.querySelector("#chart2"), options2); // gunakan options2 untuk chart kedua
+
+
             chart.render();
+            chart2.render();
+            chart3.render(); // jangan lupa render chart kedua
         </script>
 
 
