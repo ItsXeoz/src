@@ -114,7 +114,7 @@
                     <!-- Item 1 -->
                     <div class=" rounded-xl  p-6 text-center">
                         <span class="text-5xl font-bold text-yellow-300 purecounter" data-purecounter-start="0"
-                            data-purecounter-end="{{ $totalBekerja ?? 0 }}" data-purecounter-duration="1">
+                            data-purecounter-end="{{ $totalBekerja ?? 0 }}" data-purecounter-duration="1">{{ $totalBekerja ?? 0 }}
                         </span>
                         <p class="mt-2 text-gray-700 font-normal">Bekerja</p>
                     </div>
@@ -122,7 +122,7 @@
                     <!-- Item 2 -->
                     <div class=" rounded-xl p-6 text-center">
                         <span class="text-5xl font-bold text-yellow-300 purecounter" data-purecounter-start="0"
-                            data-purecounter-end="{{ $totalWiraswasta ?? 0 }}" data-purecounter-duration="1">
+                            data-purecounter-end="{{ $totalWiraswasta ?? 0 }}" data-purecounter-duration="1">{{ $totalWiraswasta ?? 0 }}
                         </span>
                         <p class="mt-2 text-gray-700 font-semibold">Wiraswasta</p>
                     </div>
@@ -130,7 +130,7 @@
                     <!-- Item 3 -->
                     <div class=" rounded-xl  p-6 text-center">
                         <span class="text-5xl font-bold text-yellow-300 purecounter" data-purecounter-start="0"
-                            data-purecounter-end="{{ $totalPendidikan ?? 0 }}" data-purecounter-duration="1">
+                            data-purecounter-end="{{ $totalPendidikan ?? 0 }}" data-purecounter-duration="1">{{ $totalPendidikan ?? 0 }}
                         </span>
                         <p class="mt-2 text-gray-700 font-semibold">Melanjutkan Pendidikan</p>
                     </div>
