@@ -39,8 +39,10 @@
                                             {{-- Dropdown Status --}}
                                             @if (isset($questions['Universal']))
                                                 <div class="category-section universal-section">
-
                                                     @foreach ($questions['Universal'] as $question)
+                                                     <div class="card h-full my-5">
+                                                        <div class="card-body">
+                                            
                                                         @if ($question->type == 'Textbox')
                                                             <x-form.textbox name="answers[{{ $question->id }}]"
                                                                 label="{{ $question->question }}" type="text" />
@@ -75,6 +77,8 @@
                                                         @elseif ($question->type == 'Scale Table')
                                                             <x-form.worker-tab :question="$question" />
                                                         @endif
+                                                        </div>
+                                                    </div>
                                                     @endforeach
                                                 </div>
                                             @endif
@@ -85,6 +89,8 @@
                                                     data-category="{{ strtolower(Str::slug($category, '-')) }}">
 
                                                     @foreach ($categoryQuestions as $question)
+                                                     <div class="card h-full my-5">
+                                        <div class="card-body">
                                                         @if ($question->type == 'Textbox')
                                                             <x-form.textbox name="answers[{{ $question->id }}]"
                                                                 label="{{ $question->question }}" type="text" />
@@ -107,6 +113,8 @@
                                                         @elseif ($question->type == 'Scale Table')
                                                             <x-form.worker-tab :question="$question" />
                                                         @endif
+                                                                </div>
+                                    </div>
                                                     @endforeach
                                                 </div>
                                             @endforeach
