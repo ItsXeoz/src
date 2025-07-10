@@ -60,7 +60,7 @@
                                                         @elseif ($question->type == 'Checkbox')
                                                             <x-form.checkbox name="answers[{{ $question->id }}][]"
                                                                 :options="$choices"
-                                                                :checked="is_array($oldAnswer)
+                                                                :selected="is_array($oldAnswer)
                                                                     ? $oldAnswer
                                                                     : json_decode($oldAnswer, true)">{{ $question->question }}</x-form.checkbox>
                                                         @elseif ($question->type == 'Dropdown')
