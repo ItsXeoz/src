@@ -92,7 +92,7 @@
                                             <div class="category-section hidden"
                                                 data-category="{{ strtolower(Str::slug($category, '-')) }}">
                                                 @foreach ($categoryQuestions as $question)
-                                                    <div class="card h-full">
+                                                    <div class="card h-full my-5">
                                                         <div class="card-body">
                                                             @php
                                                                 $oldAnswer = old(
