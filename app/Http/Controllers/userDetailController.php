@@ -17,15 +17,15 @@ class userDetailController extends Controller
         return view('admin.user_page', compact('users'));
 
     }
-    public function answers()
-    {
-        return $this->hasMany(\App\Models\Answer::class);
-    }
 
-
+//excel ecpirt
     public function exportTracerByStatus()
     {
-        return Excel::download(new AnswersByStatusExport, 'tracer_by_status.xlsx');
+        return Excel::download(new AnswersByStatusExport, 'tracer_by_status.xlsx', \Maatwebsite\Excel\Excel::XLSX, [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'Content-Disposition' => 'attachment; filename="tracer_by_status.xlsx"',
+        ]);
+
     }
 
 }
