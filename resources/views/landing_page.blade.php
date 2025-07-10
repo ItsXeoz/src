@@ -18,6 +18,13 @@
     <link rel="stylesheet" href="/vendor/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/vendor/glightbox/css/glightbox.min.css">
     <link rel="stylesheet" href="/vendor/swiper/swiper-bundle.min.css">
+    <script src="/js/app.js"></script>
+    <script src="/js/iconify-icon.min.js"></script>
+    <script src="/js/sidebarmenu.js"></script>
+    <script src="/js/overlay.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/simplebar.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/vendor/php-email-form/validate.js"></script>
     <script src="/vendor/purecounter/purecounter_vanilla.js"></script>
