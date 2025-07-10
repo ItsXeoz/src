@@ -28,17 +28,18 @@
 
                         <div class="lg:gap-x-6 gap-x-0 lg:gap-y-0 gap-y-6">
                             <div class="col-span-2">
-                                <div class="card h-full">
-                                    <div class="card-body">
-                                        <!-- FORM -->
-                                        <form action="{{ url()->secure('/survey/update') }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
 
-                                            {{-- Universal Questions --}}
-                                            @if (isset($questions['Universal']))
-                                                <div class="category-section universal-section">
-                                                    @foreach ($questions['Universal'] as $question)
+                                <!-- FORM -->
+                                <form action="{{ url()->secure('/survey/update') }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+
+                                    {{-- Universal Questions --}}
+                                    @if (isset($questions['Universal']))
+                                        <div class="category-section universal-section">
+                                            @foreach ($questions['Universal'] as $question)
+                                                <div class="card h-full my-5">
+                                                    <div class="card-body">
                                                         @php
                                                             $oldAnswer = old(
                                                                 'answers.' . $question->id,
@@ -75,14 +76,20 @@
                                                                 label="{{ $question->question }}" :options="$options"
                                                                 :selected="$oldAnswer" />
                                                         @elseif ($question->type == 'Scale Table')
-                                                            <x-form.worker-tab :question="$question" :answer="$oldAnswer" />
+                                                            <x-form.worker-tab name="answers[{{ $question->id }}]"
+                                                                label="{{ $question->question }}" :question="$question"
+                                                                :answer="$oldAnswer" />
                                                         @endif
-                                                    @endforeach
+                                                    </div>
                                                 </div>
-                                            @endif
+                                            @endforeach
+                                        </div>
+                                    @endif
 
-                                            {{-- Category-Specific Questions --}}
-                                            @foreach ($questions as $category => $categoryQuestions)
+                                    {{-- Category-Specific Questions --}}
+                                    @foreach ($questions as $category => $categoryQuestions)
+                                        <div class="card h-full my-5">
+                                            <div class="card-body">
                                                 @if ($category !== 'Universal')
                                                     <div class="category-section hidden"
                                                         data-category="{{ strtolower(Str::slug($category, '-')) }}">
@@ -108,7 +115,7 @@
                                                             @elseif ($question->type == 'Checkbox')
                                                                 <x-form.checkbox name="answers[{{ $question->id }}][]"
                                                                     :options="$choices"
-                                                                    :checked="is_array($oldAnswer)
+                                                                    :selected="is_array($oldAnswer)
                                                                         ? $oldAnswer
                                                                         : json_decode($oldAnswer, true)">{{ $question->question }}</x-form.checkbox>
                                                             @elseif ($question->type == 'Dropdown')
@@ -127,67 +134,72 @@
                                                                     label="{{ $question->question }}"
                                                                     :question="$question" :answer="$oldAnswer" />
                                                             @endif
-                                                        @endforeach
                                                     </div>
-                                                @endif
-                                            @endforeach
+                                            </div>
+                                    @endforeach
+                            </div>
+                            @endif
+                            @endforeach
 
-                                            <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg">
-                                                Perbarui Jawaban
-                                            </button>
-                                        </form>
-
-                                        {{-- JavaScript untuk Menampilkan Pertanyaan Berdasarkan Status --}}
-                                        <script>
-                                            document.addEventListener("DOMContentLoaded", function() {
-                                                const statusDropdown = document.getElementById("answers_1");
-                                                const categorySections = document.querySelectorAll(".category-section");
-
-                                                if (!statusDropdown) {
-                                                    console.warn("Status dropdown not found!");
-                                                    return;
-                                                }
-
-                                                function slugify(text) {
-                                                    return text.toLowerCase().replace(/\s+/g, '-');
-                                                }
-
-                                                function updateQuestions() {
-                                                    const selectedStatus = slugify(statusDropdown.value);
-
-                                                    categorySections.forEach(section => {
-                                                        const inputs = section.querySelectorAll("input, select, textarea");
-
-                                                        if (!section.classList.contains("universal-section")) {
-                                                            section.classList.add("hidden");
-                                                            inputs.forEach(input => input.disabled = true);
-                                                        } else {
-                                                            inputs.forEach(input => input.disabled = false);
-                                                        }
-                                                    });
-
-                                                    const selectedSection = document.querySelector(`[data-category="${selectedStatus}"]`);
-                                                    if (selectedSection) {
-                                                        selectedSection.classList.remove("hidden");
-                                                        const inputs = selectedSection.querySelectorAll("input, select, textarea");
-                                                        inputs.forEach(input => input.disabled = false);
-                                                    }
-                                                }
-
-                                                // Pastikan fungsi ini dijalankan setelah halaman termuat
-                                                statusDropdown.addEventListener("change", updateQuestions);
-                                                updateQuestions();
-                                            });
-                                        </script>
-
-                                    </div>
+                            <div class=" h-full my-5">
+                                <div class="card-body">
+                                    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg">
+                                        Perbarui Jawaban
+                                    </button>
                                 </div>
                             </div>
+                            </form>
+
+                            {{-- JavaScript untuk Menampilkan Pertanyaan Berdasarkan Status --}}
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    const statusDropdown = document.getElementById("answers_1");
+                                    const categorySections = document.querySelectorAll(".category-section");
+
+                                    if (!statusDropdown) {
+                                        console.warn("Status dropdown not found!");
+                                        return;
+                                    }
+
+                                    function slugify(text) {
+                                        return text.toLowerCase().replace(/\s+/g, '-');
+                                    }
+
+                                    function updateQuestions() {
+                                        const selectedStatus = slugify(statusDropdown.value);
+
+                                        categorySections.forEach(section => {
+                                            const inputs = section.querySelectorAll("input, select, textarea");
+
+                                            if (!section.classList.contains("universal-section")) {
+                                                section.classList.add("hidden");
+                                                inputs.forEach(input => input.disabled = true);
+                                            } else {
+                                                inputs.forEach(input => input.disabled = false);
+                                            }
+                                        });
+
+                                        const selectedSection = document.querySelector(`[data-category="${selectedStatus}"]`);
+                                        if (selectedSection) {
+                                            selectedSection.classList.remove("hidden");
+                                            const inputs = selectedSection.querySelectorAll("input, select, textarea");
+                                            inputs.forEach(input => input.disabled = false);
+                                        }
+                                    }
+
+                                    // Pastikan fungsi ini dijalankan setelah halaman termuat
+                                    statusDropdown.addEventListener("change", updateQuestions);
+                                    updateQuestions();
+                                });
+                            </script>
+
+
                         </div>
                     </div>
-                </main>
             </div>
-        </div>
+    </main>
+    </div>
+    </div>
     </main>
 </body>
 
