@@ -56,7 +56,23 @@
                 </div>
             </div>
             @auth
-                <a class="btn-getstarted" href="{{ url()->secure('logout') }}">Logout</a>
+                <div class="relative">
+                    <button id="avatarButton"
+                        class="relative z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-yellow-300 hover:border-yellow-200 focus:outline-none">
+                        <img src="{{ Auth::user()->photo_url }}" alt="User Avatar"
+                            class="w-full h-full object-cover rounded-full">
+                    </button>
+                    <div id="avatarDropdown"
+                        class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg py-2 hidden transition duration-200 z-50">
+                        <a href="" class="block px-4 py-2 text-black hover:bg-yellow-200">Profile</a>
+                        <a href="" class="block px-4 py-2 text-black hover:bg-yellow-200">Settings</a>
+                        <a href="{{ route('logout') }}" class="block px-4 py-2 text-black hover:bg-yellow-200"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
             @else
                 <a class="btn-getstarted" href="{{ url()->secure('/auth/login') }}">Login</a>
             @endauth
