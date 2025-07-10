@@ -78,7 +78,6 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 justify-center text-center mt-5">
                         <div class="icon-box p-6 bg-white shadow-lg rounded-lg" data-aos="zoom-out"
                             data-aos-delay="100">
-                            <div class="icon text-3xl"><i class="bi bi-easel"></i></div>
                             <h4 class="title"><a href="">Perbaikan
                                 </a></h4>
                             <p class="description">Sebagai bahan masukan bagi Prodi dalam melakukan perbaikan kurikulum
@@ -87,7 +86,7 @@
 
                         <div class="icon-box p-6 bg-white shadow-lg rounded-lg" data-aos="zoom-out"
                             data-aos-delay="300">
-                            <div class="icon text-3xl"><i class="bi bi-geo-alt"></i></div>
+                            
                             <h4 class="title"><a href="">Indikator Kinerja Utama
                                 </a></h4>
                             <p class="description">Indikator pencapaian instansi pendidikan pada lulusan mendapatkan
@@ -95,7 +94,6 @@
                         </div>
                         <div class="icon-box p-6 bg-white shadow-lg rounded-lg" data-aos="zoom-out"
                             data-aos-delay="400">
-                            <div class="icon text-3xl"><i class="bi bi-command"></i></div>
                             <h4 class="title"><a href="">Kerja Sama</a></h4>
                             <p class="description">Sebagai pintu masuk bagi program studi untuk menjalin kerjasama
                                 dengan perusahaan terkait alumninya</p>
