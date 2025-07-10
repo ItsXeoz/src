@@ -88,12 +88,12 @@
 
                                     {{-- Category-Specific Questions --}}
                                     @foreach ($questions as $category => $categoryQuestions)
-                                        <div class="card h-full my-5">
-                                            <div class="card-body">
-                                                @if ($category !== 'Universal')
-                                                    <div class="category-section hidden"
-                                                        data-category="{{ strtolower(Str::slug($category, '-')) }}">
-                                                        @foreach ($categoryQuestions as $question)
+                                        @if ($category !== 'Universal')
+                                            <div class="category-section hidden"
+                                                data-category="{{ strtolower(Str::slug($category, '-')) }}">
+                                                @foreach ($categoryQuestions as $question)
+                                                    <div class="card h-full">
+                                                        <div class="card-body">
                                                             @php
                                                                 $oldAnswer = old(
                                                                     'answers.' . $question->id,
@@ -134,72 +134,72 @@
                                                                     label="{{ $question->question }}"
                                                                     :question="$question" :answer="$oldAnswer" />
                                                             @endif
+                                                        </div>
                                                     </div>
+                                                @endforeach
                                             </div>
+                                        @endif
                                     @endforeach
-                            </div>
-                            @endif
-                            @endforeach
 
-                            <div class=" h-full my-5">
-                                <div class="card-body">
-                                    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg">
-                                        Perbarui Jawaban
-                                    </button>
-                                </div>
-                            </div>
-                            </form>
+                                    <div class="card h-full">
+                                        <div class="card-body">
+                                            <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg">
+                                                Perbarui Jawaban
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
 
-                            {{-- JavaScript untuk Menampilkan Pertanyaan Berdasarkan Status --}}
-                            <script>
-                                document.addEventListener("DOMContentLoaded", function() {
-                                    const statusDropdown = document.getElementById("answers_1");
-                                    const categorySections = document.querySelectorAll(".category-section");
+                                {{-- JavaScript untuk Menampilkan Pertanyaan Berdasarkan Status --}}
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        const statusDropdown = document.getElementById("answers_1");
+                                        const categorySections = document.querySelectorAll(".category-section");
 
-                                    if (!statusDropdown) {
-                                        console.warn("Status dropdown not found!");
-                                        return;
-                                    }
+                                        if (!statusDropdown) {
+                                            console.warn("Status dropdown not found!");
+                                            return;
+                                        }
 
-                                    function slugify(text) {
-                                        return text.toLowerCase().replace(/\s+/g, '-');
-                                    }
+                                        function slugify(text) {
+                                            return text.toLowerCase().replace(/\s+/g, '-');
+                                        }
 
-                                    function updateQuestions() {
-                                        const selectedStatus = slugify(statusDropdown.value);
+                                        function updateQuestions() {
+                                            const selectedStatus = slugify(statusDropdown.value);
 
-                                        categorySections.forEach(section => {
-                                            const inputs = section.querySelectorAll("input, select, textarea");
+                                            categorySections.forEach(section => {
+                                                const inputs = section.querySelectorAll("input, select, textarea");
 
-                                            if (!section.classList.contains("universal-section")) {
-                                                section.classList.add("hidden");
-                                                inputs.forEach(input => input.disabled = true);
-                                            } else {
+                                                if (!section.classList.contains("universal-section")) {
+                                                    section.classList.add("hidden");
+                                                    inputs.forEach(input => input.disabled = true);
+                                                } else {
+                                                    inputs.forEach(input => input.disabled = false);
+                                                }
+                                            });
+
+                                            const selectedSection = document.querySelector(`[data-category="${selectedStatus}"]`);
+                                            if (selectedSection) {
+                                                selectedSection.classList.remove("hidden");
+                                                const inputs = selectedSection.querySelectorAll("input, select, textarea");
                                                 inputs.forEach(input => input.disabled = false);
                                             }
-                                        });
-
-                                        const selectedSection = document.querySelector(`[data-category="${selectedStatus}"]`);
-                                        if (selectedSection) {
-                                            selectedSection.classList.remove("hidden");
-                                            const inputs = selectedSection.querySelectorAll("input, select, textarea");
-                                            inputs.forEach(input => input.disabled = false);
                                         }
-                                    }
 
-                                    // Pastikan fungsi ini dijalankan setelah halaman termuat
-                                    statusDropdown.addEventListener("change", updateQuestions);
-                                    updateQuestions();
-                                });
-                            </script>
+                                        // Pastikan fungsi ini dijalankan setelah halaman termuat
+                                        statusDropdown.addEventListener("change", updateQuestions);
+                                        updateQuestions();
+                                    });
+                                </script>
 
 
+                            </div>
                         </div>
                     </div>
+                </main>
             </div>
-    </main>
-    </div>
-    </div>
+        </div>
     </main>
 </body>
 
