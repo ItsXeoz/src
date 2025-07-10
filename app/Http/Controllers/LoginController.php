@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
+
 
 class LoginController extends Controller
 {
@@ -21,13 +23,13 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        // Coba login ke database lokal
+        // 1. Coba login ke database lokal
         if (Auth::attempt(['nim' => $request->nim, 'password' => $request->password])) {
             $role = Auth::user()->role;
-            return redirect()->intended($role == 'admin' ? '/admin' : '/user');
+            return redirect()->intended($role === 'admin' ? '/admin' : '/user');
         }
 
-        // Jika gagal, coba login ke API eksternal
+        // 2. Jika gagal, coba login ke API eksternal
         $token = env('API_TOKEN');
         $url = env('BASE_URL');
 
@@ -35,31 +37,48 @@ class LoginController extends Controller
             'Authorization' => 'Bearer ' . $token,
             'Accept' => 'application/json',
         ])->asForm()->post($url, [
-                    'username' => $request->nim,
-                    'password' => $request->password,
-                ]);
+            'username' => $request->nim,
+            'password' => $request->password,
+        ]);
 
         if ($response->successful() && $response['status'] === true) {
             $data = $response['data'];
 
-            // Simpan ke database lokal jika belum ada
+            // Ambil setting
+            $setting = DB::table('settings')->first();
+
+            // 3. Jika demo aktif, lakukan validasi tambahan
+            if ($setting && $setting->demo) {
+                if ($data['kode_jur'] !== $setting->kode_jur) {
+                    return back()->withErrors(['nim' => 'Khusus alumni informatika.']);
+                }
+
+                if ($data['status_login'] !== 'mahasiswa') {
+                    return back()->withErrors(['nim' => 'Khusus akun mahasiswa.']);
+                }
+            }
+
+            // 4. Simpan ke database lokal
             $user = User::updateOrCreate(
                 ['nim' => $data['username']],
                 [
                     'name' => $data['first_name'],
                     'email' => $data['email'] ?? null,
                     'photo_url' => $data['foto_user'],
+                    'status_login' => $data['status_login'],
+                    'kode_jur' => $data['kode_jur'],
+                    'angkatan' => substr($data['angkatan'], 0, 4),
                     'role' => 'user',
                     'password' => bcrypt($request->password),
                 ]
             );
 
-            // Login Laravel
+            // 5. Login dan redirect
             Auth::login($user);
-
             return redirect()->intended('/user');
         }
 
+        // 6. Jika semuanya gagal
         return back()->withErrors(['nim' => 'NIM atau password salah.']);
     }
 

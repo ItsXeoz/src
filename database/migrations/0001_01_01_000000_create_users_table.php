@@ -16,6 +16,10 @@ return new class extends Migration {
             $table->string('nim')->unique()->index();
             $table->string('email')->unique()->nullable();
             $table->string('photo_url')->nullable();
+            $table->string('status_login')->nullable();
+            $table->string('kode_jur')->nullable();
+            $table->string('angkatan')->nullable();
+            
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->enum('role', ['user', 'admin']);
