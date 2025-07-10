@@ -114,7 +114,8 @@
                     <!-- Item 1 -->
                     <div class=" rounded-xl  p-6 text-center">
                         <span class="text-5xl font-bold text-yellow-300 purecounter" data-purecounter-start="0"
-                            data-purecounter-end="{{ $totalBekerja ?? 0 }}" data-purecounter-duration="1">{{ $totalBekerja ?? 0 }}
+                            data-purecounter-end="{{ $totalBekerja ?? 0 }}"
+                            data-purecounter-duration="1">{{ $totalBekerja ?? 0 }}
                         </span>
                         <p class="mt-2 text-gray-700 font-normal">Bekerja</p>
                     </div>
@@ -122,7 +123,8 @@
                     <!-- Item 2 -->
                     <div class=" rounded-xl p-6 text-center">
                         <span class="text-5xl font-bold text-yellow-300 purecounter" data-purecounter-start="0"
-                            data-purecounter-end="{{ $totalWiraswasta ?? 0 }}" data-purecounter-duration="1">{{ $totalWiraswasta ?? 0 }}
+                            data-purecounter-end="{{ $totalWiraswasta ?? 0 }}"
+                            data-purecounter-duration="1">{{ $totalWiraswasta ?? 0 }}
                         </span>
                         <p class="mt-2 text-gray-700 font-semibold">Wiraswasta</p>
                     </div>
@@ -130,7 +132,8 @@
                     <!-- Item 3 -->
                     <div class=" rounded-xl  p-6 text-center">
                         <span class="text-5xl font-bold text-yellow-300 purecounter" data-purecounter-start="0"
-                            data-purecounter-end="{{ $totalPendidikan ?? 0 }}" data-purecounter-duration="1">{{ $totalPendidikan ?? 0 }}
+                            data-purecounter-end="{{ $totalPendidikan ?? 0 }}"
+                            data-purecounter-duration="1">{{ $totalPendidikan ?? 0 }}
                         </span>
                         <p class="mt-2 text-gray-700 font-semibold">Melanjutkan Pendidikan</p>
                     </div>
@@ -157,7 +160,7 @@
             <div class="bg-white rounded-2xl shadow-lg px-6 py-4 w-full max-w-md">
                 <h2 class="text-xl font-semibold text-center text-gray-800 mb-4">Mendapat Kerja Kurang Dari 6 Bulan
                 </h2>
-                <div id="chart1" class="w-full"></div>
+                <div id="chart" class="w-full"></div>
             </div>
 
             <div class="bg-white rounded-2xl shadow-lg px-6 py-4 w-full max-w-md">
@@ -170,22 +173,37 @@
                 <div id="chart3" class="w-full"></div>
             </div>
         </div>
+        @php
+            $data = DB::table('answers')
+                ->join('questions', 'answers.question_id', '=', 'questions.id')
+                ->where('questions.question', 'ILIKE', '%pekerjaan kurang dari 6 bulan%')
+                ->select('answers.answer', DB::raw('count(*) as total'))
+                ->groupBy('answers.answer')
+                ->get();
 
+            $labels = $data->pluck('answer');
+            $series = $data->pluck('total');
+
+        @endphp
         <script>
-            const options1 = {
+            const options = {
                 chart: {
                     type: 'pie',
-                    height: 320
+                    height: 350
                 },
-                labels: {!! json_encode($label) !!},
-                series: {!! json_encode($answer) !!},
-                colors: ['#22c55e', '#ef4444', '#a78bfa'],
+                labels: {!! json_encode($labels) !!}, // dari Blade
+                series: {!! json_encode($series) !!}, // dari Blade
+                colors: ['#22c55e', '#f97316', '#ef4444'],
                 legend: {
                     position: 'bottom'
                 },
                 dataLabels: {
                     enabled: true,
-                    formatter: val => val.toFixed(1) + '%'
+                    formatter: function(val, opts) {
+                        const total = opts.w.globals.seriesTotals.reduce((a, b) => a + b, 0);
+                        const value = opts.w.globals.series[opts.seriesIndex];
+                        return `${value} (${val.toFixed(1)}%)`;
+                    }
                 },
                 stroke: {
                     show: true,
@@ -194,24 +212,12 @@
                 }
             };
 
-            const options2 = {
-                ...options1,
-                labels: {!! json_encode($label) !!},
-                series: {!! json_encode($answer) !!},
-                colors: ['#3b82f6', '#f59e0b', '#10b981']
-            };
-
-            const options3 = {
-                ...options1,
-                labels: {!! json_encode($label) !!},
-                series: {!! json_encode($answer) !!},
-                colors: ['#8b5cf6', '#ec4899', '#0ea5e9']
-            };
-
-            new ApexCharts(document.querySelector("#chart1"), options1).render();
-            new ApexCharts(document.querySelector("#chart2"), options2).render();
-            new ApexCharts(document.querySelector("#chart3"), options3).render();
+            const chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
         </script>
+
+
+
 
 
 
