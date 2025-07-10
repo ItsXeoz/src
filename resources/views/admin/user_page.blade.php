@@ -38,7 +38,7 @@
                                 <div class="card h-full">
                                     <div class="bg-white rounded-lg shadow-md p-6 flex-col  w-full">
                                         <div class="flex justify-end px-6">
-                                            <a href="{{ url('/export-answers') }}"
+                                            <a href="{{ url('/export-tracer-status')}}"
                                                 class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition duration-150">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2"
                                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -67,28 +67,28 @@
                                             </thead>
                                             <tbody>
                                                 @forelse ($users as $index => $user)
-    @if ($user->role === 'user')
-        <tr class="bg-white border-b hover:bg-gray-50">
-            <th scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                {{ $index +1}}
-            </th>
-            <td class="px-6 py-4">
-                {{ $user->name }}
-            </td>
-            <td class="px-6 py-4">
-                {{ $user->nim }}
-            </td>
-            <td class="px-6 py-4">
-                {{ $user->answers->isNotEmpty() ? 'Sudah Mengisi' : 'Belum Mengisi' }}
-            </td>
-        </tr>
-    @endif
-@empty
-    <tr>
-        <td colspan="5" class="text-center py-4">Tidak ada data.</td>
-    </tr>
-@endforelse
+                                                    @if ($user->role === 'user')
+                                                        <tr class="bg-white border-b hover:bg-gray-50">
+                                                            <th scope="row"
+                                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                                                {{ $index + 1 }}
+                                                            </th>
+                                                            <td class="px-6 py-4">
+                                                                {{ $user->name }}
+                                                            </td>
+                                                            <td class="px-6 py-4">
+                                                                {{ $user->nim }}
+                                                            </td>
+                                                            <td class="px-6 py-4">
+                                                                {{ $user->answers->isNotEmpty() ? 'Sudah Mengisi' : 'Belum Mengisi' }}
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="5" class="text-center py-4">Tidak ada data.</td>
+                                                    </tr>
+                                                @endforelse
 
                                             </tbody>
 
