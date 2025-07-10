@@ -29,7 +29,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('questions', QuestionController::class)->middleware('role:admin');
     Route::post('/questions/store', [QuestionController::class, 'store'])->name('questions.store')->middleware('role:admin');
-    Route::post('/questions/update', [QuestionController::class, 'update'])->name('questions.update')->middleware('role:admin');
 
     Route::resource('survey', SurveyController::class)->middleware('role:user');
     Route::put('/survey/update  ', [SurveyController::class, 'update'])->name('survey.update')->middleware('role:user');
