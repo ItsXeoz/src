@@ -39,10 +39,19 @@ class StatisticController extends Controller
 
             $answers = $answerQuery->pluck('answer');
 
-            $grouped = collect($answers)->flatMap(function ($a) {
-                $decoded = json_decode($a, true);
-                return is_array($decoded) ? $decoded : [$a];
-            })->countBy();
+           $grouped = collect($answers)->flatMap(function ($a) {
+    $decoded = json_decode($a, true);
+
+    // Ambil hanya nilai scalar dari decoded array
+    if (is_array($decoded)) {
+        return collect($decoded)->filter(fn($v) => is_scalar($v))->values();
+    }
+
+    return is_scalar($a) ? [$a] : [];
+})->countBy();
+
+
+            
 
             if ($grouped->isNotEmpty()) {
                 $charts[] = [
